@@ -16,6 +16,15 @@ env.bak/
 venv.bak/
 
 # =========================
+# Data (DO NOT COMMIT)
+# =========================
+Data/
+data/
+*.csv
+*.parquet
+*.xlsx
+
+# =========================
 # VS Code / IDEs
 # =========================
 .vscode/
