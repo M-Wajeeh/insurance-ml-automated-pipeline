@@ -16,13 +16,11 @@ env.bak/
 venv.bak/
 
 # =========================
-# VS Code
+# VS Code / IDEs
 # =========================
 .vscode/
-!.vscode/settings.json
-!.vscode/launch.json
-!.vscode/tasks.json
-!.vscode/extensions.json
+.idea/
+*.iml
 
 # =========================
 # OS / System files
@@ -38,13 +36,6 @@ build/
 dist/
 *.egg-info/
 .eggs/
-pip-wheel-metadata/
-
-# =========================
-# Packaging
-# =========================
-*.whl
-*.tar.gz
 
 # =========================
 # Logs & runtime files
@@ -83,14 +74,26 @@ htmlcov/
 .pytype/
 
 # =========================
-# IDEs (extra safety)
-# =========================
-.idea/
-*.iml
-
-# =========================
-# Temporary files
+# Temporary / Backup files
 # =========================
 *.tmp
 *.swp
 *.bak
+
+# =========================
+# DVC (IMPORTANT)
+# =========================
+/Data/**
+/models/**
+/reports/**
+/outputs/**
+
+# Allow DVC metadata files
+!Data/.gitkeep
+!models/.gitkeep
+!reports/.gitkeep
+
+# =========================
+# Optional: local configs
+# =========================
+config/local.yaml

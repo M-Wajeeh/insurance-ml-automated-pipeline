@@ -1,0 +1,92 @@
+schema: '2.0'
+stages:
+  preprocessing:
+    cmd: python scripts/preprocessing.py --input_path Data/insurance.csv 
+      --output_path Data/preprocessed_insurance.csv
+    deps:
+    - path: Data/insurance.csv
+      hash: md5
+      md5: d5364d06246fb4bfa4cc7d1ee89ebd0d
+      size: 55628
+    - path: config/config.yaml
+      hash: md5
+      md5: 9ca6fb8703d1d36d5aab936553499258
+      size: 542
+    - path: scripts/preprocessing.py
+      hash: md5
+      md5: ef3e95d465bb1610a9b62852a35b24fd
+      size: 1526
+    outs:
+    - path: Data/preprocessed_insurance.csv
+      hash: md5
+      md5: d0b06a8f7d5e62bfa3cabefb694c7168
+      size: 55690
+  feature_engineering:
+    cmd: python scripts/feature_engineering.py --input_path 
+      Data/preprocessed_insurance.csv --output_path 
+      Data/engineered_insurance.csv
+    deps:
+    - path: Data/preprocessed_insurance.csv
+      hash: md5
+      md5: d0b06a8f7d5e62bfa3cabefb694c7168
+      size: 55690
+    - path: config/config.yaml
+      hash: md5
+      md5: 9ca6fb8703d1d36d5aab936553499258
+      size: 542
+    - path: scripts/feature_engineering.py
+      hash: md5
+      md5: 856d8d9aea2c043d7fdc52202d2b4157
+      size: 1347
+    outs:
+    - path: Data/engineered_insurance.csv
+      hash: md5
+      md5: 48e5ec3b2f699d3ac02d424e31dbec53
+      size: 74468
+  model_training:
+    cmd: python scripts/model_train.py --input_path 
+      Data/engineered_insurance.csv --model_path models/model.pkl
+    deps:
+    - path: Data/engineered_insurance.csv
+      hash: md5
+      md5: 48e5ec3b2f699d3ac02d424e31dbec53
+      size: 74468
+    - path: scripts/model_train.py
+      hash: md5
+      md5: 99c1fba11bb78e05cf57104bcc190527
+      size: 2010
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 48035502d5822a0347cd9ea4c094e342
+      size: 767
+    - path: reports/training_metrics.json
+      hash: md5
+      md5: 39939473f71ca7918428630723bf1bb5
+      size: 96
+  model_testing:
+    cmd: python scripts/model_test.py --input_path Data/engineered_insurance.csv
+      --model_path models/model.pkl
+    deps:
+    - path: Data/engineered_insurance.csv
+      hash: md5
+      md5: 48e5ec3b2f699d3ac02d424e31dbec53
+      size: 74468
+    - path: models/model.pkl
+      hash: md5
+      md5: 48035502d5822a0347cd9ea4c094e342
+      size: 767
+    - path: scripts/model_test.py
+      hash: md5
+      md5: 1ae8b9755ea8d609271787cced6e8b8f
+      size: 1706
+    outs:
+    - path: reports/plots/
+      hash: md5
+      md5: de0350b8548d909820b4bffe36a53a25.dir
+      size: 28479
+      nfiles: 1
+    - path: reports/test_metrics.json
+      hash: md5
+      md5: 39939473f71ca7918428630723bf1bb5
+      size: 96

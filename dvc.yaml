@@ -1,0 +1,40 @@
+stages:
+  preprocessing:
+    cmd: python scripts/preprocessing.py --input_path Data/insurance.csv --output_path Data/preprocessed_insurance.csv
+    deps:
+      - scripts/preprocessing.py
+      - Data/insurance.csv
+    outs:
+      - Data/preprocessed_insurance.csv
+
+  feature_engineering:
+    cmd: python scripts/feature_engineering.py --input_path Data/preprocessed_insurance.csv --output_path Data/engineered_insurance.csv
+    deps:
+      - scripts/feature_engineering.py
+      - Data/preprocessed_insurance.csv
+    outs:
+      - Data/engineered_insurance.csv
+
+  model_training:
+    cmd: python scripts/model_train.py --input_path Data/engineered_insurance.csv --model_path models/model.pkl
+    deps:
+      - scripts/model_train.py
+      - Data/engineered_insurance.csv
+    outs:
+      - models/model.pkl
+      - reports/training_metrics.json
+
+  model_testing:
+    cmd: python scripts/model_test.py --input_path Data/engineered_insurance.csv --model_path models/model.pkl
+    deps:
+      - scripts/model_test.py
+      - Data/engineered_insurance.csv
+      - models/model.pkl
+    outs:
+      - reports/plots/
+    metrics:
+      - reports/test_metrics.json:
+          cache: false
+
+
+  

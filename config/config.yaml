@@ -1,0 +1,20 @@
+data_preprocessing:
+  input_path: Data/insurance.csv
+  output_path: Data/preprocessed_insurance.csv
+
+feature_engineering:
+  input_path: Data/preprocessed_insurance.csv
+  output_path: Data/engineered_insurance.csv
+
+model_training:
+  input_path: Data/engineered_insurance.csv
+  model_path: outputs/models/model.pkl
+  learning_rate: 0.01
+  epochs: 50
+  batch_size: 32
+
+model_testing:
+  input_path: Data/engineered_insurance.csv
+  model_path: outputs/model.pkl
+  metrics_path: reports/metrics.json
+  plots_dir: reports/plots/
