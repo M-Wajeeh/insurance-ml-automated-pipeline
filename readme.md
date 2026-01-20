@@ -1,7 +1,7 @@
 
 # Automated Machine Learning Pipeline using DVC
 
-An end-to-end automated Machine Learning pipeline built using **Python**, **Scikit-learn**, and **DVC**, ensuring full reproducibility and version control of data, models, and experiments.
+An end-to-end automated Machine Learning pipeline built using **Python**, **Scikit-learn**,**Dockers** and **DVC**, ensuring full reproducibility and version control of data, models, and experiments.
 
 ---
 
