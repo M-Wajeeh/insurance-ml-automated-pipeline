@@ -14,6 +14,7 @@ This project automates the complete Machine Learning workflow:
 - Model evaluation
 - Metrics and artifact tracking using DVC
 
+
 The pipeline is modular, reproducible, and easy to maintain.
 
 ---
@@ -60,6 +61,8 @@ Features included:
 ├── params.yaml
 ├── .gitignore
 ├── .dvcignore
+├── .dockerignore
+├── Dockerfile
 ├── requirements.txt
 └── README.md
 
@@ -73,6 +76,7 @@ Features included:
 - Pandas, NumPy
 - Scikit-learn
 - DVC
+- Docker
 - Git
 
 ---
@@ -95,6 +99,20 @@ View metrics:
 ```bash
 cat reports/test_metrics.json
 ```
+## How to Run using Docker
+- Build the Docker Image
+```bash
+docker build -t ml-pipeline .
+```
+
+- Run the Docker Container
+
+```bash
+docker run --rm ml-pipeline
+```
+
+The container will automatically run the pipeline using the default command defined in the Dockerfile:
+dvc repro
 
 ---
 
